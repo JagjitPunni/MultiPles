@@ -80,3 +80,16 @@ main > .container {
 .checklist > li i {
   color: var(--primary-color);
 }
+
+.Fizz{
+  color:#e44d26;
+}
+
+.Buzz{
+  color:#0a71b8;
+}
+
+.FizzBuzz{
+ color: darkgreen;
+ font-weight: bold;
+}
