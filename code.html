@@ -18,7 +18,7 @@
     <!-- ==== Navbar Section ==== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top text-white">
       <div class="container-fluid">
-        <div class="navbar-brand" href="#"><img src="/img/mylogo.png" class="d-inline-block align-text-top" height="26" alt=""/>MultiPles</div>
+        <div class="navbar-brand" href="#"><img src="/img/mylogo.png" class="d-inline-block align-text-top" height="26" alt="" />MultiPles</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,22 +51,94 @@
           <div class="col-lg-8">
             <pre class="line-numbers">
               <code class="language-javascript">
-                //Call Hello World
-                  function helloWorld(){
-                  alert('Hello World');
-                  }
+                //start or controller function
+                      function getValues() {
+                        //get values from the page
+                        let fizzValue = document.getElementById('fizzValue').value;
+                        let buzzValue = document.getElementById('buzzValue').value;
+
+                        //We need to validate our input
+                        //parse into integers with build-in function
+                        fizzValue = parseInt(fizzValue);
+                        buzzValue = parseInt(buzzValue);
+
+                        if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+                          let fbData = fizzBuzz(fizzValue, buzzValue);
+                          displayData(fbData);
+                        } else {
+                          alert('You must enter integers');
+                        }
+                      }
+
+                      //logic functions(s)
+                      function fizzBuzz(value1, value2) {
+                        let returnArray = [];
+                        for (let i = 1; i <= 100; i++) {
+                          if (i % value1 == 0 && i % value2 == 0) {
+                            returnArray.push('FizzBuzz');
+                          } else if (i % value1 == 0) {
+                            returnArray.push('Fizz');
+                          } else if (i % value2 == 0) {
+                            returnArray.push('Buzz');
+                          } else {
+                            returnArray.push(i);
+                          }
+                        }
+
+                        return returnArray;
+                      }
+
+                      //display or view functions
+                      function displayData(fbData) {
+                        //get the table body element from the page
+                        let tableBody = document.getElementById('results');
+
+                        //get the template row
+                        let templateRow = document.getElementById('fbTemplate');
+
+                        //clear table first
+                        tableBody.innerHTML = '';
+
+                        for (let i = 0; i < fbData.length; i += 5) {
+                          let tableRow = document.importNode(templateRow.content, true);
+
+                          //grab use the td#s to put into array
+                          let rowCols = tableRow.querySelectorAll('td');
+                          rowCols[0].classList.add(fbData[i]);
+                          rowCols[0].textContent = fbData[i];
+
+                          rowCols[1].classList.add(fbData[i + 1]);
+                          rowCols[1].textContent = fbData[i + 1];
+
+                          rowCols[2].classList.add(fbData[i + 2]);
+                          rowCols[2].textContent = fbData[i + 2];
+
+                          rowCols[3].classList.add(fbData[i + 3]);
+                          rowCols[3].textContent = fbData[i + 3];
+
+                          rowCols[4].classList.add(fbData[i + 4]);
+                          rowCols[4].textContent = fbData[i + 4];
+
+                          tableBody.appendChild(tableRow);
+                        }
+                      }
               </code>
             </pre>
           </div>
           <div class="col-lg-4">
-            <p>The Code is structed in one function.</p>
-            <h5>Hello World</h5>
-            <p>helloWorld is a function that displays an alert with a message of "Hello World"</p>
+            <h3>Functionality of displayData(fbData) in the JavaScript code:</h3>
+            <ol>
+              <li>Loops through the elements of the fizz buzz data</li>
+              <li>Retrieves 5 elements of the fizz buzz data starting from the current index (i) and adds them to a table row.</li>
+              <li>Uses the querySelectorAll() method to retrieve the table data (td) elements from the template row</li>
+              <li>Uses the classList.add() method to add a class to each td element based on the corresponding fizz buzz value</li>
+              <li>Uses the textContent property to set the text of each td element to the corresponding fizz buzz value</li>
+              <li>Appends the completed table row to the table body using the appendChild() method</li>
+              <li>Displays the fizz buzz values to the user in the HTML table</li>
+            </ol>
           </div>
         </div>
-      </div>  
-      
-    
+      </div>
     </main>
     <!-- ==== Footer Section ==== -->
     <footer class="footer mt-auto py-3">
